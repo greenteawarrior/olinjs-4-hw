@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  h1 All of #{author}'s tweets! Sorted by time of the tweet.
+
+  if (authorExists=="true")
+    ul
+      each tweet in tweets
+        li #{tweet.time} : #{tweet.message}
+  else
+    p Oh noes! this person isn't actually in our database... D: !
