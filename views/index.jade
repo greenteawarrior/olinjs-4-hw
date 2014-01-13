@@ -7,15 +7,21 @@ block content
 
   if (loginStatus == "true")
     form(action="/tweets/"+username , method='post', id="tweetform")
-      h3 Type your tweet!
+      h3 Compose your tweet!
       input(type="text", name='message', id="message")
-      button(type='submit')
-        | Submit  
+      button(class="tweetButton", type='submit')
+        | Tweet!  
 
   if (allTweets)
     ul
-    each tweet in allTweets
-      li #{tweet.author} at #{tweet.time} : #{tweet.message}
+      //- rendering only three tweets and then jquery will manipulate the page more
+      li #{allTweets[0].author} at #{allTweets[0].time} : #{allTweets[0].message} 
+      li #{allTweets[1].author} at #{allTweets[1].time} : #{allTweets[1].message} 
+      li #{allTweets[2].author} at #{allTweets[2].time} : #{allTweets[2].message} 
+
+    //- rendering all the tweets
+    //- each tweet in allTweets
+    //-   li #{tweet.author} at #{tweet.time} : #{tweet.message}
 
   //- include _twits
 
