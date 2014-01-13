@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  form(action="/users/new", method='post', id="loginform")
+    h2 Login
+    | Username
+    input(type="text", name='username', id="username")
+    button(type='submit')
+      | Submit
+
