@@ -38,27 +38,31 @@ exports.newuser_post = function(req, res){
 //GET /
 exports.index = function(req, res){
   var currentUser = req.session.user;
-  //getting ALL the tweets 
+  if (currentUser) { //if someone's logged in
+    res.render('index', { title: 'Crappy Twitter', 
+                          username: currentUser.username, 
+                          loginStatus: "true"});
+  }
+  else { //nobody's logged in yet 
+    res.render('index', { title: 'Crappy Twitter', 
+                          username: "nobody yet", 
+                          loginStatus: "false"});    
+  }
+}
+
+
+// GET /tweets/partial/:index
+// convenient way to obtain tweets to stream in to the home page 
+// involved in the $.get in tcAjax.js
+exports.tweetsPartial = function(req, res) {
+  var desiredTweetIndex = req.params.index;
   allTweets = models.Tweet.find()
-                          .sort({time: 'desc'})
+                          .sort({time: 'asc'})
                           .exec(function(err, allTweets){
-    if (err) { //error case
-      console.log(err);
-    }
-    else if (currentUser) { //if someone's logged in
-      res.render('index', { title: 'Crappy Twitter', 
-                            username: currentUser.username, 
-                            loginStatus: "true", 
-                            allTweets: allTweets});
-    }
-    else { //nobody's logged in yet 
-      res.render('index', { title: 'Crappy Twitter', 
-                            username: "nobody yet", 
-                            loginStatus: "false", 
-                            allTweets: allTweets});    
-    }
-  });
-};
+                            res.render('_twits', {desiredTweet:allTweets[desiredTweetIndex]})
+                          });
+}
+
 
 //GET /tweets/:user
 exports.specificUserTweets = function(req, res){
@@ -85,7 +89,7 @@ exports.specificUserTweets = function(req, res){
   });
 }
 
-//POST /tweets/:user
+//POST /tweets
 exports.specificUserTweets_post = function(req, res){
   var author = req.session.user.username;
   var message = req.body.message;
@@ -99,5 +103,3 @@ exports.specificUserTweets_post = function(req, res){
   });
   res.redirect('/');
 }
-
-

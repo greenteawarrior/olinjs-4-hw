@@ -6,18 +6,11 @@ block content
   p Hi! You have been logged in as #{username}.
 
   if (loginStatus == "true")
-    form(action="/tweets/"+username , method='post', id="tweetform")
+    form(action="/tweets", method='post', id="tweetform")
       h3 Compose your tweet!
       input(type="text", name='message', id="message")
       button(class="tweetButton", type='submit')
         | Tweet!  
-
-  if (allTweets)
-    ul
-      //- rendering only three tweets and then jquery will manipulate the page more
-      li #{allTweets[0].author} at #{allTweets[0].time} : #{allTweets[0].message} 
-      li #{allTweets[1].author} at #{allTweets[1].time} : #{allTweets[1].message} 
-      li #{allTweets[2].author} at #{allTweets[2].time} : #{allTweets[2].message} 
-
-  //- include _twits
+  
+  ul
 

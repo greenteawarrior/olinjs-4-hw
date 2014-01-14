@@ -55,10 +55,11 @@ app.get('/users', user.list);
 
 //twitter clone pages! see routes/twitterclone.js
 app.get('/', tc.index);
+app.get('/tweets/partial/:index', tc.tweetsPartial);
 app.get('/users/new', tc.newuser_get);
 app.post('/users/new', tc.newuser_post);
 app.get('/tweets/:user', tc.specificUserTweets);
-app.post('/tweets/:user', tc.specificUserTweets_post);
+app.post('/tweets', tc.specificUserTweets_post);
 
 
 http.createServer(app).listen(app.get('port'), function(){
