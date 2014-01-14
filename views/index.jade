@@ -8,9 +8,10 @@ block content
   if (loginStatus == "true")
     form(action="/tweets", method='post', id="tweetform")
       h3 Compose your tweet!
-      input(type="text", name='message', id="message")
-      button(class="tweetButton", type='submit')
+      p(class="tweeterr")
+      input(type="text", name='message', id='message')
+      button(class="tweetButton", val=username, type='submit')
         | Tweet!  
   
-  ul
+  ul(class="tweetstream")
 
