@@ -1,12 +1,13 @@
 doctype html
 html
   head
-    title= title
+    title title
     link(rel='stylesheet', href='/stylesheets/style.css')
     script(src='http://code.jquery.com/jquery.js')
     script(src='/javascripts/tcAjax.js')
   body
-    a(href="/") Home || 
-    a(href="/users/new") Login || 
-    a(href="/tweets/Panda") ohai Panda||  
+    div(class="toparea")
+      a(href="/") Home || 
+      a(href="/users/new") Login || 
+      a(href="/tweets/Panda") ohai Panda||  
     block content

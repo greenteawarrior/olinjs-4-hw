@@ -1,16 +1,16 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
-  p Hi! You have been logged in as #{username}.
+  div(class="toparea")
+    h1= title
+    p Welcome!
+    p Hi! You have been logged in as #{username}.
 
   if (loginStatus == "true")
     form(action="/tweets", method='post', id="tweetform")
-      h3 Compose your tweet!
-      p(class="tweeterr")
-      input(type="text", name='message', id='message')
-      button(class="tweetButton", val=username, type='submit')
-        | Tweet!  
+      div(id="compose") Compose your tweet!
+      textarea(type="text", name='message', id='message')
+      button(class="tweetButton", val=username, type='submit') Tweet!  
   
+  //- div(id="tweetstreamTitle") Check out what's been tweeting recently!
   ul(class="tweetstream")
