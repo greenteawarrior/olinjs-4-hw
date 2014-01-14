@@ -101,5 +101,5 @@ exports.specificUserTweets_post = function(req, res){
       console.log(err);
     }
   });
-  res.redirect('/');
+  //res.redirect('/');
 }
